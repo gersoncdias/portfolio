@@ -16,7 +16,9 @@ test("apresenta conteúdo principal, projetos e estados honestos", async ({
     await expect(
       page.getByRole("heading", { name: project.name, exact: true }),
     ).toBeVisible();
-  await expect(page.getByText("Em preparação", { exact: true })).toHaveCount(3);
+  await expect(
+    page.getByRole("heading", { name: "Certificações", exact: true }),
+  ).toBeVisible();
   await page
     .locator(".project-card")
     .first()
@@ -25,7 +27,10 @@ test("apresenta conteúdo principal, projetos e estados honestos", async ({
   await expect(
     page.getByText("Integração com Google Drive.", { exact: true }),
   ).toBeVisible();
-  await expect(page.locator(".resume-unavailable")).toHaveCount(2);
+  await expect(page.locator(".resume-unavailable")).toHaveCount(0);
+  await expect(
+    page.getByRole("link", { name: "Visualizar currículo", exact: true }),
+  ).toHaveAttribute("href", /documents\/curriculo-gerson-dias\.pdf$/);
 });
 test("navega pelo menu e acompanha a seção atual", async ({
   page,
@@ -33,7 +38,10 @@ test("navega pelo menu e acompanha a seção atual", async ({
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const [id, label] of navigation) {
-    await page.locator("#sobre").scrollIntoViewIfNeeded();
+    await page.evaluate(() => {
+      const actions = document.querySelector(".hero-buttons");
+      window.scrollTo(0, (actions?.getBoundingClientRect().bottom ?? 0) + window.scrollY + 1);
+    });
     await expect(page.locator(".header")).not.toHaveClass(/header-intro/);
     if (isMobile)
       await page.getByRole("button", { name: "Abrir menu" }).click();
@@ -70,7 +78,7 @@ test("links internos têm destino e externos são seguros", async ({ page }) => 
   for (const link of await page.locator('a[href^="https://"]').all()) {
     const url = new URL((await link.getAttribute("href"))!);
     expect(url.hostname).toMatch(
-      /^(www\.)?(linkedin\.com|github\.com|qavault\.com\.br)$/,
+      /^(www\.)?(linkedin\.com|github\.com|qavault\.com\.br|cursos\.alura\.com\.br|udemy-certificate\.s3\.amazonaws\.com)$/,
     );
     await expect(link).toHaveAttribute("rel", /noopener/);
     await expect(link).toHaveAttribute("rel", /noreferrer/);
