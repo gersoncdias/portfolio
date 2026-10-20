@@ -52,10 +52,6 @@ export function Contact() {
   return (
     <section id="contato" className="section contact">
       <div className="contact-content">
-        <div className="eyebrow">
-          <span className="status-dot" />
-          {copy.contactEyebrow}
-        </div>
         <h2>{copy.contactTitle}</h2>
         <p>{copy.contactDescription}</p>
         <div className="contact-buttons">

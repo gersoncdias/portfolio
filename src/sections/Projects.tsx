@@ -25,7 +25,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           }
         />
-        {index === 0 && <span className="featured-label">{copy.featured}</span>}
       </div>
       <div className="project-body">
         <div className="eyebrow">{project.category}</div>

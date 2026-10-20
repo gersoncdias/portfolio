@@ -622,14 +622,6 @@ li::marker {
     monospace;
   color: var(--muted);
 }
-.featured-label {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-size: 9px;
-  letter-spacing: 1px;
-  color: var(--accent);
-}
 .project-body {
   padding: 25px;
   display: flex;
