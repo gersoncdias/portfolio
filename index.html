@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05080b" />
+    <title>Gerson Dias — QA Engineer & Test Automation</title>
+    <meta
+      name="description"
+      content="Portfólio de Gerson Dias. Engenharia de qualidade, automação de testes, APIs e ferramentas para QA. Conheça minha trajetória e o ecossistema QA Vault."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta
+      property="og:title"
+      content="Gerson Dias — Quality Assurance Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Construindo software com mais qualidade e confiança. Experiência, projetos e engenharia de qualidade."
+    />
+    <meta
+      property="og:url"
+      content="https://gersoncdias.github.io/portfolio/"
+    />
+    <meta
+      property="og:image"
+      content="https://gersoncdias.github.io/portfolio/images/social.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%images/favicon.svg" />
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("portfolio-theme") === "light"
+            ? "light"
+            : "dark";
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
