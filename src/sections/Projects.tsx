@@ -1,13 +1,12 @@
 import {
   ArrowUpRight,
-  Boxes,
   ChevronDown,
   FlaskConical,
   FolderCheck,
   Layers,
 } from "lucide-react";
-import { caseStudies, copy, projects } from "../data";
-import type { CaseStudy, Project } from "../types/content";
+import { copy, projects } from "../data";
+import type { Project } from "../types/content";
 import { ExternalLink, SafeImage, SectionHeading } from "../components/Shared";
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const Icon = [FolderCheck, Layers, FlaskConical][index % 3];
@@ -26,7 +25,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           }
         />
-        <span className="project-index">0{index + 1}</span>
         {index === 0 && <span className="featured-label">{copy.featured}</span>}
       </div>
       <div className="project-body">
@@ -80,30 +78,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     </article>
   );
 }
-function CaseStudyCard({ study }: { study: CaseStudy }) {
-  return (
-    <article className="case-card">
-      <Boxes size={21} />
-      <h3>{study.title}</h3>
-      {study.status === "preparation" ? (
-        <span className="tag">{copy.preparation}</span>
-      ) : (
-        <details>
-          <summary>{copy.details}</summary>
-          {Object.entries(copy.caseFields).map(([key, label]) => {
-            const value = study[key as keyof CaseStudy];
-            return value ? (
-              <div key={key}>
-                <h4>{label}</h4>
-                <p>{Array.isArray(value) ? value.join(", ") : value}</p>
-              </div>
-            ) : null;
-          })}
-        </details>
-      )}
-    </article>
-  );
-}
 export function Projects() {
   return (
     <section id="projetos" className="section">
@@ -115,15 +89,6 @@ export function Projects() {
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
-      </div>
-      <div className="case-studies">
-        <div className="eyebrow">{copy.casesLabel}</div>
-        <h3 className="subheading">{copy.casesTitle}</h3>
-        <div className="cases-grid">
-          {caseStudies.map((study) => (
-            <CaseStudyCard key={study.title} study={study} />
-          ))}
-        </div>
       </div>
     </section>
   );

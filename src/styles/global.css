@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 :root {
   font-family:
     Inter,
@@ -6,7 +6,7 @@
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    "Segoe UI",
+    'Segoe UI',
     sans-serif;
   color: var(--text);
   background: var(--bg);
@@ -23,7 +23,7 @@
   --soft: #102a32;
   color-scheme: dark;
 }
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   --bg: #f7fafc;
   --surface: #fff;
   --raised: #edf3f7;
@@ -128,7 +128,7 @@ a:hover {
   margin: 18px 0 0 22px;
 }
 .eyebrow {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 1.6px;
   color: var(--accent);
@@ -213,7 +213,7 @@ a:hover {
   color: var(--accent);
 }
 .navigation a[aria-current]:after {
-  content: "";
+  content: '';
   height: 2px;
   position: absolute;
   bottom: 14px;
@@ -325,7 +325,7 @@ a:hover {
   padding: 12px 20px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   background: var(--surface);
 }
@@ -346,12 +346,6 @@ a:hover {
   min-width: 150px;
 }
 
-.hero-down {
-  margin-top: 40px;
-  color: var(--muted);
-  display: flex;
-  padding: 10px;
-}
 .about-copy {
   padding: 34px;
   border: 1px solid var(--line);
@@ -392,53 +386,49 @@ a:hover {
   font-size: 20px;
   font-weight: 600;
 }
-.about-copy > p {
+.about-intro,
+.about-details-content > p {
   font-size: 15px;
   margin-bottom: 20px;
 }
-.about-copy > p:first-of-type {
+.about-intro:first-of-type {
   color: var(--text);
   font-size: 17px;
 }
-.specialties-heading {
-  margin-top: 30px;
+.about-details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 4px 0 20px;
+  width: fit-content;
 }
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.pillars > div > span {
+.about-details summary::-webkit-details-marker {
   display: none;
 }
-.pillars h3 {
+.about-read-less {
+  display: none;
+}
+.about-details[open] .about-read-more {
+  display: none;
+}
+.about-details[open] .about-read-less {
+  display: inline;
+}
+.about-details-content h4 {
+  font-size: 16px;
+  margin: 24px 0 16px;
+}
+.about-competency {
+  margin-bottom: 20px;
+}
+.about-competency h5 {
   font-size: 14px;
   margin-bottom: 7px;
 }
-.pillars h3:before {
-  content: "•";
-  color: var(--accent);
-  margin-right: 9px;
-}
-.pillars p {
-  font-size: 13px;
-  margin-bottom: 0;
-}
-.company-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 22px;
-}
-.company-strip > span {
-  border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 8px;
-  padding: 18px 23px;
-  text-align: center;
-  flex: 1;
-  font-size: 13px;
-  color: var(--muted);
+.about-competency ul {
+  margin: 0;
+  padding-left: 18px;
 }
 .skills-grid {
   display: grid;
@@ -479,7 +469,7 @@ a:hover {
 }
 .tag {
   display: inline-block;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5;
   border: 1px solid var(--line);
   border-radius: 5px;
@@ -506,7 +496,7 @@ a:hover {
   position: relative;
 }
 .timeline-item:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 37px;
   left: -28px;
@@ -527,15 +517,24 @@ a:hover {
   margin: 0;
   flex: 1;
 }
+.job-company-logo,
+.job-company-logo-fallback {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+}
 .job-date {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--accent);
 }
 .job-heading .tag {
-  font-size: 10px;
+  font-size: 11px;
 }
 .job-role {
-  font-size: 14px;
+  font-size: 15px;
   margin: 7px 0 23px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 20px;
@@ -574,9 +573,22 @@ li::marker {
   overflow: hidden;
 }
 .project-visual > img {
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+.project-card.project-0 .project-visual {
+  height: auto;
+  aspect-ratio: 450 / 253;
+}
+.project-card.project-1 .project-visual {
+  height: auto;
+  aspect-ratio: 805 / 423;
+}
+.project-card.project-2 .project-visual {
+  height: auto;
+  aspect-ratio: 1174 / 609;
 }
 .project-placeholder {
   display: flex;
@@ -614,7 +626,7 @@ li::marker {
   position: absolute;
   top: 14px;
   left: 14px;
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 1px;
   color: var(--accent);
 }
@@ -625,7 +637,7 @@ li::marker {
   flex: 1;
 }
 .project-body > .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
@@ -647,7 +659,7 @@ summary {
   align-items: center;
   justify-content: space-between;
   padding: 12px 0;
-  font-size: 13px;
+  font-size: 14px;
 }
 summary::-webkit-details-marker {
   display: none;
@@ -659,14 +671,14 @@ details[open] summary svg {
   padding: 12px 0;
 }
 .project-details h4 {
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 12px;
 }
 .project-details ul {
   padding-left: 17px;
 }
 .project-details li {
-  font-size: 13px;
+  font-size: 14px;
 }
 .project-links {
   display: flex;
@@ -681,44 +693,11 @@ details[open] summary svg {
   align-items: center;
   gap: 5px;
   color: var(--accent);
-  font-size: 11px;
+  font-size: 13px;
 }
 .project-links > span {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
-}
-.case-studies {
-  margin-top: 45px;
-}
-.case-studies > .eyebrow {
-  font-size: 10px;
-  margin-bottom: 10px;
-}
-.subheading {
-  font-size: 23px;
-  margin-bottom: 23px;
-}
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.case-card {
-  padding: 23px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface);
-}
-.case-card > svg {
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-.case-card h3 {
-  font-size: 15px;
-  min-height: 48px;
-}
-.case-card .tag {
-  font-size: 10px;
 }
 .articles-empty {
   display: flex;
@@ -744,7 +723,7 @@ details[open] summary svg {
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--accent);
   margin-left: auto;
   white-space: nowrap;
@@ -789,7 +768,7 @@ details[open] summary svg {
   color: var(--accent);
 }
 .education-card .eyebrow {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
@@ -816,6 +795,49 @@ details[open] summary svg {
   font-size: 13px;
   margin-bottom: 0;
 }
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.certification-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--bg);
+}
+.certification-card img,
+.certification-image-fallback {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.42;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  margin-bottom: 14px;
+}
+.certification-image-fallback {
+  background: var(--bg);
+}
+.certification-card h4 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.certification-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.certification-card p {
+  font-size: 12px;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+.certificate-file-link {
+  color: var(--accent);
+  font-size: 13px;
+}
 .contact-content {
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -823,7 +845,7 @@ details[open] summary svg {
   background: var(--surface);
 }
 .contact-content > .eyebrow {
-  font-size: 11px;
+  font-size: 12px;
 }
 .contact h2 {
   font-size: 34px;
@@ -850,7 +872,7 @@ details[open] summary svg {
   margin-top: 30px;
 }
 .contact-bottom > span {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .footer {
@@ -863,10 +885,10 @@ details[open] summary svg {
   padding-bottom: 30px;
 }
 .footer .brand {
-  font-size: 13px;
+  font-size: 14px;
 }
 .footer p {
-  font-size: 11px;
+  font-size: 12px;
   margin: 0;
 }
 .footer-links {
@@ -954,12 +976,6 @@ details[open] summary svg {
     border-bottom: 0;
     border-right: 1px solid var(--line);
   }
-  .cases-grid {
-    gap: 12px;
-  }
-  .case-card {
-    padding: 18px;
-  }
   .articles-empty {
     flex-wrap: wrap;
   }
@@ -972,9 +988,6 @@ details[open] summary svg {
   }
   .education-card h3 {
     font-size: 16px;
-  }
-  .company-strip > span {
-    min-width: 180px;
   }
 }
 @media (max-width: 600px) {
@@ -1025,9 +1038,6 @@ details[open] summary svg {
     min-width: 290px;
   }
 
-  .hero-down {
-    margin-top: 26px;
-  }
   h2 {
     font-size: 27px;
   }
@@ -1061,17 +1071,6 @@ details[open] summary svg {
   .monogram {
     width: 48px;
     height: 48px;
-  }
-  .pillars {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .company-strip {
-    gap: 10px;
-  }
-  .company-strip > span {
-    padding: 15px;
-    font-size: 12px;
   }
   .skills-grid {
     grid-template-columns: 1fr;
@@ -1111,7 +1110,6 @@ details[open] summary svg {
     font-size: 13px;
   }
   .projects-grid,
-  .cases-grid,
   .education-grid,
   .articles-grid {
     grid-template-columns: 1fr;
@@ -1128,12 +1126,6 @@ details[open] summary svg {
   }
   .project-body {
     padding: 23px;
-  }
-  .case-card {
-    padding: 22px;
-  }
-  .case-card h3 {
-    min-height: 0;
   }
   .articles-empty {
     padding: 24px;
@@ -1153,6 +1145,13 @@ details[open] summary svg {
   }
   .education-card {
     padding: 24px 20px;
+  }
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+  .certification-card img,
+  .certification-image-fallback {
+    width: 100%;
   }
   .contact-content {
     padding: 25px;
@@ -1190,6 +1189,20 @@ details[open] summary svg {
   }
   .footer-links .social-links {
     display: flex;
+  }
+}
+
+/* Each project preview keeps the native aspect ratio of its artwork. */
+@media (max-width: 900px) {
+  .project-card:first-child {
+    grid-column: auto;
+    display: flex;
+  }
+  .project-card:first-child .project-visual {
+    height: auto;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
 }
 .back-to-top {

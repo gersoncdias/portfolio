@@ -1,9 +1,4 @@
-import {
-  ArrowDown,
-  ArrowUpRight,
-  BriefcaseBusiness,
-  MessageSquare,
-} from "lucide-react";
+import { ArrowUpRight, BriefcaseBusiness, MessageSquare } from "lucide-react";
 import { copy, profile } from "../data";
 import { ResumeLink, SocialLinks } from "../components/Shared";
 export function Hero() {
@@ -13,7 +8,7 @@ export function Hero() {
         <p className="eyebrow">{copy.eyebrow}</p>
         <h1 tabIndex={-1}>{profile.name}</h1>
         <p className="hero-title">{profile.title}</p>
-        <p className="hero-description">{copy.about[0]}</p>
+        <p className="hero-description">{copy.about.intro[0]}</p>
         <SocialLinks />
         <div className="hero-buttons">
           <a className="button primary" href="#experiencia">
@@ -31,9 +26,6 @@ export function Hero() {
           <ResumeLink />
         </div>
       </div>
-      <a className="hero-down" href="#sobre" aria-label={copy.aboutLink}>
-        <ArrowDown size={20} />
-      </a>
     </section>
   );
 }

@@ -1,9 +1,8 @@
 import { Linkedin } from "../components/BrandIcons";
-import { ArrowUp, ArrowUpRight, BookOpen, Mail } from "lucide-react";
+import { ArrowUpRight, BookOpen, Mail } from "lucide-react";
 import { articles, copy, profile } from "../data";
 import {
   ExternalLink,
-  ResumeLink,
   SectionHeading,
   SocialLinks,
 } from "../components/Shared";
@@ -71,7 +70,6 @@ export function Contact() {
               {copy.email}
             </a>
           )}
-          <ResumeLink download />
         </div>
       </div>
       <span className="contact-symbol" aria-hidden="true">
@@ -96,9 +94,6 @@ export function Footer() {
       </p>
       <div className="footer-links">
         <SocialLinks />
-        <a href="#inicio" aria-label={copy.backTop}>
-          <ArrowUp size={18} />
-        </a>
       </div>
     </footer>
   );

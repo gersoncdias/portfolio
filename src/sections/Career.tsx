@@ -37,27 +37,32 @@ export function About() {
           </div>
         </div>
         <h3 className="eyebrow">{copy.profileHeading}</h3>
-        {copy.about.map((p) => (
-          <p key={p}>{p}</p>
+        {copy.about.intro.map((p) => (
+          <p className="about-intro" key={p}>
+            {p}
+          </p>
         ))}
-        <h3 className="eyebrow specialties-heading">
-          {copy.specialtiesHeading}
-        </h3>
-        <div className="pillars">
-          {copy.pillars.map(([n, title, text]) => (
-            <div key={n}>
-              <span>{n}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </div>
-          ))}
-        </div>
+        <details className="about-details">
+          <summary>
+            <span className="about-read-more">Ler mais</span>
+            <span className="about-read-less">Mostrar menos</span>
+          </summary>
+          <div className="about-details-content">
+            <h4>{copy.about.competenciesTitle}</h4>
+            {copy.about.competencies.map((competency) => (
+              <section className="about-competency" key={competency.title}>
+                <h5>{competency.title}</h5>
+                <ul>
+                  {competency.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+            <p>{copy.about.conclusion}</p>
+          </div>
+        </details>
       </div>
-      <aside className="company-strip" aria-label={copy.companiesHeading}>
-        {experiences.map((job) => (
-          <span key={job.company}>{job.company}</span>
-        ))}
-      </aside>
     </section>
   );
 }
@@ -70,6 +75,12 @@ export function Experience() {
           <article className="timeline-item" key={job.company}>
             <div className="job-content">
               <div className="job-heading">
+                <SafeImage
+                  src={job.logo}
+                  alt={`Logo ${job.company}`}
+                  className="job-company-logo"
+                  fallback={<div className="job-company-logo-fallback" />}
+                />
                 <h3>{job.company}</h3>
                 <span className="job-date">{job.period}</span>
                 {job.current && (
@@ -135,16 +146,42 @@ export function Education() {
       <div className="certifications">
         <h3>{copy.certifications}</h3>
         {certifications.length ? (
-          certifications.map((c) => (
-            <p key={c.name}>
-              {c.url ? (
-                <ExternalLink href={c.url}>{c.name}</ExternalLink>
-              ) : (
-                c.name
-              )}{" "}
-              · {c.issuer} {c.year}
-            </p>
-          ))
+          <div className="certifications-grid">
+            {certifications.map((c) => (
+              <article className="certification-card" key={c.name}>
+                {c.image && (
+                  <SafeImage
+                    src={c.image}
+                    alt={`Certificado ${c.name}`}
+                    fallback={<div className="certification-image-fallback" />}
+                  />
+                )}
+                <div>
+                  <h4>
+                    {c.url ? (
+                      <ExternalLink href={c.url}>{c.name}</ExternalLink>
+                    ) : (
+                      c.name
+                    )}
+                  </h4>
+                  <span>
+                    {c.issuer} {c.year && `· ${c.year}`}
+                  </span>
+                  {c.description && <p>{c.description}</p>}
+                  {c.file && (
+                    <a
+                      className="certificate-file-link"
+                      href={`${import.meta.env.BASE_URL}${c.file}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {copy.viewCertificate}
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         ) : (
           <p>{copy.certificationsEmpty}</p>
         )}

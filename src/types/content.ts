@@ -16,14 +16,3 @@ export interface Article {
   date?: string;
   url: string;
 }
-export interface CaseStudy {
-  title: string;
-  status: "preparation" | "published";
-  context?: string;
-  problem?: string;
-  strategy?: string;
-  tools?: string[];
-  approach?: string;
-  results?: string;
-  learnings?: string;
-}
