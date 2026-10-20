@@ -78,7 +78,7 @@ test("links internos têm destino e externos são seguros", async ({ page }) => 
   for (const link of await page.locator('a[href^="https://"]').all()) {
     const url = new URL((await link.getAttribute("href"))!);
     expect(url.hostname).toMatch(
-      /^(www\.)?(linkedin\.com|github\.com|qavault\.com\.br|cursos\.alura\.com\.br|udemy-certificate\.s3\.amazonaws\.com)$/,
+      /^(www\.)?(linkedin\.com|github\.com|qavault\.com\.br|qauto\.websolutions\.app\.br|cursos\.alura\.com\.br|udemy-certificate\.s3\.amazonaws\.com)$/,
     );
     await expect(link).toHaveAttribute("rel", /noopener/);
     await expect(link).toHaveAttribute("rel", /noreferrer/);
