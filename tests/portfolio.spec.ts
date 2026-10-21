@@ -78,11 +78,30 @@ test("links internos têm destino e externos são seguros", async ({ page }) => 
   for (const link of await page.locator('a[href^="https://"]').all()) {
     const url = new URL((await link.getAttribute("href"))!);
     expect(url.hostname).toMatch(
-      /^(www\.)?(linkedin\.com|github\.com|qavault\.com\.br|qauto\.websolutions\.app\.br|cursos\.alura\.com\.br|udemy-certificate\.s3\.amazonaws\.com)$/,
+      /^(www\.)?(linkedin\.com|github\.com|qavault\.com\.br|qauto\.websolutions\.app\.br|cursos\.alura\.com\.br|udemy\.com|udemy-certificate\.s3\.amazonaws\.com)$/,
     );
     await expect(link).toHaveAttribute("rel", /noopener/);
     await expect(link).toHaveAttribute("rel", /noreferrer/);
   }
+});
+test("exibe três certificados e permite avançar no carrossel", async ({ page }) => {
+  const cards = page.locator(".certification-card");
+  await expect(cards).toHaveCount(3);
+  await expect(cards.first().locator("img")).toBeVisible();
+  await expect(cards.first().locator("img")).toHaveAttribute(
+    "src",
+    /images\/certificates\/udemy-testes-automatizados-ia-generativa\.jpg$/,
+  );
+  await expect(
+    page.getByText("Testes Automatizados e IA Generativa", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Ver próximos certificados" }).click();
+  await expect(
+    page.getByText("Testes Automatizados e IA Generativa", { exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByText("Testes automatizados com Cypress", { exact: true }),
+  ).toBeVisible();
 });
 test("não apresenta overflow, erros JavaScript ou recursos quebrados", async ({
   page,

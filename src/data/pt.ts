@@ -123,6 +123,8 @@ export const copy = {
   educationTitle: 'Formação acadêmica',
   certifications: 'Certificações',
   viewCertificate: 'Visualizar certificado',
+  previousCertificates: 'Ver certificados anteriores',
+  nextCertificates: 'Ver próximos certificados',
   certificationsEmpty: 'Certificações serão adicionadas após confirmação das informações.',
   contactTitle: 'Vamos conversar?',
   contactDescription:
@@ -290,6 +292,13 @@ export const certifications: {
   image?: string;
   file?: string;
 }[] = [
+  {
+    name: 'Testes Automatizados e IA Generativa',
+    issuer: 'Udemy',
+    year: '2026',
+    url: 'https://www.udemy.com/certificate/UC-19b582e7-1f91-4eac-8bc1-b3599a9f2d2c/',
+    image: 'images/certificates/udemy-testes-automatizados-ia-generativa.jpg',
+  },
   {
     name: 'Certificação VTEX Sales',
     issuer: 'VTEX',

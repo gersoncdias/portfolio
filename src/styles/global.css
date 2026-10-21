@@ -783,6 +783,38 @@ details[open] summary svg {
   font-size: 16px;
   margin-bottom: 9px;
 }
+.certifications-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.certifications-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.certificate-carousel-button {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+.certificate-carousel-button:hover,
+.certificate-carousel-button:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.certificate-carousel-button:active {
+  transform: scale(0.94);
+}
 .certifications p {
   font-size: 13px;
   margin-bottom: 0;
@@ -1140,6 +1172,9 @@ details[open] summary svg {
   }
   .certifications-grid {
     grid-template-columns: 1fr;
+  }
+  .certifications-heading {
+    align-items: flex-start;
   }
   .certification-card img,
   .certification-image-fallback {

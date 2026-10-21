@@ -1,5 +1,8 @@
+import { useState } from "react";
 import {
   Braces,
+  ChevronLeft,
+  ChevronRight,
   Code2,
   GitBranch,
   GraduationCap,
@@ -126,6 +129,29 @@ export function Skills() {
   );
 }
 export function Education() {
+  const certificatesPerView = 3;
+  const [firstCertificate, setFirstCertificate] = useState(0);
+  const maxFirstCertificate = Math.max(
+    0,
+    certifications.length - certificatesPerView,
+  );
+  const visibleCertifications = certifications.slice(
+    firstCertificate,
+    firstCertificate + certificatesPerView,
+  );
+
+  const showPreviousCertificates = () => {
+    setFirstCertificate((current) =>
+      current === 0 ? maxFirstCertificate : current - 1,
+    );
+  };
+
+  const showNextCertificates = () => {
+    setFirstCertificate((current) =>
+      current === maxFirstCertificate ? 0 : current + 1,
+    );
+  };
+
   return (
     <section id="formacao" className="section">
       <SectionHeading title={copy.educationTitle} />
@@ -144,10 +170,32 @@ export function Education() {
         ))}
       </div>
       <div className="certifications">
-        <h3>{copy.certifications}</h3>
+        <div className="certifications-heading">
+          <h3>{copy.certifications}</h3>
+          {certifications.length > certificatesPerView && (
+            <div className="certifications-controls">
+              <button
+                type="button"
+                className="certificate-carousel-button"
+                aria-label={copy.previousCertificates}
+                onClick={showPreviousCertificates}
+              >
+                <ChevronLeft aria-hidden="true" size={18} />
+              </button>
+              <button
+                type="button"
+                className="certificate-carousel-button"
+                aria-label={copy.nextCertificates}
+                onClick={showNextCertificates}
+              >
+                <ChevronRight aria-hidden="true" size={18} />
+              </button>
+            </div>
+          )}
+        </div>
         {certifications.length ? (
           <div className="certifications-grid">
-            {certifications.map((c) => (
+            {visibleCertifications.map((c) => (
               <article className="certification-card" key={c.name}>
                 {c.image && (
                   <SafeImage
