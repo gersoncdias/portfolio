@@ -4,7 +4,6 @@ import { articles, copy, profile } from "../data";
 import {
   ExternalLink,
   SectionHeading,
-  SocialLinks,
 } from "../components/Shared";
 export function Articles() {
   return (
@@ -71,26 +70,15 @@ export function Contact() {
       <span className="contact-symbol" aria-hidden="true">
         ↗
       </span>
-      <div className="contact-bottom">
-        <span>{profile.title}</span>
-        <SocialLinks />
-      </div>
     </section>
   );
 }
 export function Footer() {
   return (
     <footer className="footer">
-      <a className="brand" href="#inicio">
-        {profile.name}
-        <span className="brand-dot">/</span>
-      </a>
       <p>
         © {new Date().getFullYear()} {profile.name}. {copy.footer}
       </p>
-      <div className="footer-links">
-        <SocialLinks />
-      </div>
     </footer>
   );
 }
